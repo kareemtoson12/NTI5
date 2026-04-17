@@ -1,60 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti5/features/textfieldFeature/cubit/text_field_cubit.dart';
+import 'package:nti5/features/textfieldFeature/textfield_scree.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Counter());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Counter extends StatelessWidget {
+  const Counter({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          centerTitle: true,
-          title: Text('News', style: TextStyle(color: Colors.white)),
-        ),
-        body: Column(
-          children: [
-            Text('Pick your category f interest'),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: [
-                  NewsCard(color: Colors.redAccent, text: 'football'),
-                  NewsCard(color: Colors.redAccent, text: 'oouyfootball'),
-                  NewsCard(color: Colors.redAccent, text: 'football'),
-                  NewsCard(color: Colors.redAccent, text: 'football'),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class NewsCard extends StatelessWidget {
-  final String text;
-  final Color color;
-  const NewsCard({super.key, required this.text, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: color,
-      ),
-      width: 100,
-      height: 200,
-      child: Column(
-        children: [Image.asset('assets/log.png', width: 100), Text(text)],
+      home: BlocProvider(
+        create: (context) => TextFieldCubit(),
+        child: TextfieldScree(),
       ),
     );
   }
