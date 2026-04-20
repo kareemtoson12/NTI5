@@ -1,6 +1,5 @@
 // Karim Toson || kareemtoson1@gmail.com || Mon Apr 20 2026 17:14:52
 
-
 abstract class TodoStates {
   final List<String> todoList;
   TodoStates(this.todoList);
