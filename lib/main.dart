@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti5/features/auth/login/login_screen.dart';
 import 'package:nti5/features/auth/signup/signup_screen.dart';
 import 'package:nti5/features/onboarding/onboarding_screen.dart';
 
@@ -12,12 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignupScreen(),
+      home: LoginScreen(),
       routes: {
         '/onboarding': (context) => OnboardingScreen(),
         '/signup': (context) => SignupScreen(),
-        '/login': (context) =>
-            Scaffold(body: Center(child: Text('Login Screen'))),
+        '/login': (context) => LoginScreen(),
         '/home': (context) =>
             Scaffold(body: Center(child: Text('Home Screen'))),
       },

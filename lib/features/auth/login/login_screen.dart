@@ -1,3 +1,5 @@
+// Karim Toson || kareemtoson1@gmail.com || Tue Apr 28 2026 19:05:33
+
 // Karim Toson || kareemtoson1@gmail.com || Tue Apr 28 2026 18:20:00
 
 import 'package:flutter/foundation.dart';
@@ -8,23 +10,22 @@ import 'package:nti5/core/widgtes/button_widget.dart';
 import 'package:nti5/features/auth/widgets/custom_text_form_field.dart';
 import 'package:nti5/features/auth/widgets/or_divider.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginScreen> createState() => _SignupScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignupScreenState extends State<LoginScreen> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
-  late TextEditingController nameController;
 
   @override
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    nameController = TextEditingController();
+
     super.initState();
   }
 
@@ -32,7 +33,6 @@ class _SignupScreenState extends State<SignupScreen> {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    nameController.dispose();
 
     super.dispose();
   }
@@ -55,45 +55,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-                  Text('Sign up ', style: StylesManager.titleText20Style),
+                  Text('Log in ', style: StylesManager.titleText20Style),
                   SizedBox(height: screenHeight * 0.01),
                   CustomTextField(
                     hint: 'email',
                     prefixIcon: Icons.person,
                     controller: emailController,
                   ),
-                  CustomTextField(
-                    hint: 'name',
-                    prefixIcon: Icons.person,
-                    controller: nameController,
-                  ),
+
                   CustomTextField(
                     hint: 'password',
                     prefixIcon: Icons.key,
                     controller: passwordController,
                   ),
-                  SizedBox(height: screenHeight * 0.02),
-
-                  //already have an account? login
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "already have an account?  ",
-                        style: TextStyle(color: ColorsManager.greyColor),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/login');
-                        },
-                        child: Text(
-                          "login",
-                          style: TextStyle(color: ColorsManager.greyColor),
-                        ),
-                      ),
-                    ],
-                  ),
-
                   SizedBox(height: screenHeight * 0.05),
                   ButtonWidget(
                     onpress: () {
@@ -101,8 +75,30 @@ class _SignupScreenState extends State<SignupScreen> {
                         print('login');
                       }
                     },
-                    text: 'Sign up',
+                    text: 'Log in ',
                   ),
+                  SizedBox(height: screenHeight * 0.02),
+
+                  //didnt have an account
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Don't have an account? ",
+                        style: TextStyle(color: ColorsManager.greyColor),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/signup');
+                        },
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(color: ColorsManager.greyColor),
+                        ),
+                      ),
+                    ],
+                  ),
+
                   SizedBox(height: screenHeight * 0.03),
                   OrDivider(),
                 ],
