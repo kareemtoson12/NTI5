@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       //if mounted
       if (mounted) {
-        Navigator.pushReplacementNamed(context, '/signup');
+        Navigator.pushReplacementNamed(context, '/onboarding');
       }
     });
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti5/features/onboarding/onboarding_screen.dart';
 import 'package:nti5/features/splash/splash_screen.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: SplashScreen(),
       routes: {
+        '/onboarding': (context) => OnboardingScreen(),
         '/signup': (context) =>
             Scaffold(body: Center(child: Text('Sign Up Screen'))),
         '/login': (context) =>

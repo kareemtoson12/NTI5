@@ -7,4 +7,10 @@ class StylesManager {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
+
+  static TextStyle white30Bold = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 }
