@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nti5/features/auth/signup/signup_screen.dart';
 import 'package:nti5/features/onboarding/onboarding_screen.dart';
-import 'package:nti5/features/splash/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      home: SignupScreen(),
       routes: {
         '/onboarding': (context) => OnboardingScreen(),
-        '/signup': (context) =>
-            Scaffold(body: Center(child: Text('Sign Up Screen'))),
+        '/signup': (context) => SignupScreen(),
         '/login': (context) =>
             Scaffold(body: Center(child: Text('Login Screen'))),
         '/home': (context) =>
