@@ -111,32 +111,6 @@ class _HomeViewState extends State<HomeView> {
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
 
-  Future<void> _selectDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-    if (picked != null && mounted) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
-
-  Future<void> _selectTime() async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: selectedTime ?? TimeOfDay.now(),
-    );
-    if (picked != null && mounted) {
-      setState(() {
-        selectedTime = picked;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,36 +144,24 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             const SizedBox(height: 32),
-            FilledButton(onPressed: () {}, child: const Text('Filled Button')),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Elevated Button'),
+            Row(
+              children: [
+                FilledButton(
+                  onPressed: () {},
+                  child: const Text('Filled Button'),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Elevated Button'),
+                ),
+                const SizedBox(height: 16),
+                FilledButton.tonal(
+                  onPressed: () {},
+                  child: const Text('Tonal Button'),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: _selectDate,
-              icon: const Icon(Icons.calendar_today),
-              label: const Text('Select Date'),
-            ),
-            const SizedBox(height: 8),
-            if (selectedDate != null)
-              Text(
-                'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
-                style: const TextStyle(fontSize: 16),
-              ),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: _selectTime,
-              icon: const Icon(Icons.access_time),
-              label: const Text('Select Time'),
-            ),
-            const SizedBox(height: 8),
-            if (selectedTime != null)
-              Text(
-                'Selected Time: ${selectedTime!.format(context)}',
-                style: const TextStyle(fontSize: 16),
-              ),
             const SizedBox(height: 16),
             const Badge(label: Text('3'), child: Icon(Icons.notifications)),
             const SizedBox(height: 16),
@@ -217,10 +179,7 @@ class _HomeViewState extends State<HomeView> {
               },
             ),
             const SizedBox(height: 16),
-            FilledButton.tonal(
-              onPressed: () {},
-              child: const Text('Tonal Button'),
-            ),
+
             SegmentedButton(
               segments: const [
                 ButtonSegment(value: 'a', label: Text('A')),
