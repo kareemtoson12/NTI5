@@ -74,6 +74,7 @@ class _SignupScreenState extends State<LoginScreen> {
                       if (kDebugMode) {
                         print('login');
                       }
+                      Navigator.pushNamed(context, '/home');
                     },
                     text: 'Log in ',
                   ),
