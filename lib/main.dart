@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nti5/features/main_navigator/main_navigation.dart';
 import 'package:nti5/features/auth/login/login_screen.dart';
 import 'package:nti5/features/auth/signup/signup_screen.dart';
-import 'package:nti5/features/home/home_screen.dart';
 import 'package:nti5/features/onboarding/onboarding_screen.dart';
 import 'package:nti5/features/splash/splash_screen.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         '/onboarding': (context) => OnboardingScreen(),
         '/signup': (context) => SignupScreen(),
         '/login': (context) => LoginScreen(),
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => MainNavigation(),
       },
     );
   }
