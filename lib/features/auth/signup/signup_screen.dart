@@ -1,10 +1,12 @@
 // Karim Toson || kareemtoson1@gmail.com || Tue Apr 28 2026 18:20:00
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti5/core/styles/colors_manager.dart';
 import 'package:nti5/core/styles/styles_manager.dart';
 import 'package:nti5/core/widgtes/button_widget.dart';
+import 'package:nti5/features/auth/cubit/auth_cubit.dart';
+import 'package:nti5/features/auth/cubit/states.dart';
 import 'package:nti5/features/auth/widgets/custom_text_form_field.dart';
 import 'package:nti5/features/auth/widgets/or_divider.dart';
 
@@ -95,13 +97,47 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
 
                   SizedBox(height: screenHeight * 0.05),
-                  ButtonWidget(
-                    onpress: () {
-                      if (kDebugMode) {
-                        print('login');
+                  BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state is SignUpSuccessState) {
+                        Navigator.pushNamed(context, '/home');
+                        //show snackBar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Login success'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+
+                        if (state is SignUpErrorState) {
+                          //show snackBar
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Login failed'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
                       }
                     },
-                    text: 'Sign up',
+                    builder: (context, state) {
+                      final cubit = context.read<AuthCubit>();
+                      if (state is SignUpLoadingState) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      return ButtonWidget(
+                        onpress: () {
+                          if (formKey.currentState!.validate()) {
+                            cubit.signUp(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              name: nameController.text,
+                            );
+                          }
+                        },
+                        text: 'Sign up',
+                      );
+                    },
                   ),
                   SizedBox(height: screenHeight * 0.03),
                   OrDivider(),
