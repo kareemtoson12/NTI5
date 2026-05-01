@@ -1,11 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:nti5/features/main_navigator/main_navigation.dart';
 import 'package:nti5/features/auth/login/login_screen.dart';
 import 'package:nti5/features/auth/signup/signup_screen.dart';
+import 'package:nti5/features/main_navigator/main_navigation.dart';
 import 'package:nti5/features/onboarding/onboarding_screen.dart';
 import 'package:nti5/features/splash/splash_screen.dart';
+import 'package:nti5/firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
