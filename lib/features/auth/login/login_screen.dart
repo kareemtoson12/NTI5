@@ -108,7 +108,7 @@ class _SignupScreenState extends State<LoginScreen> {
                             );
                           }
                         },
-                        text: 'Sign up',
+                        text: 'Login ',
                       );
                     },
                   ),
