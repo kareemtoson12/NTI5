@@ -1,7 +1,10 @@
 // Karim Toson || kareemtoson1@gmail.com || Tue Apr 28 2026 19:23:43
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti5/core/styles/styles_manager.dart';
+import 'package:nti5/features/home/cubit/home_cubit.dart';
+import 'package:nti5/features/home/cubit/states.dart';
 import 'package:nti5/features/home/widgets/category_chip.dart';
 
 class CategorySection extends StatefulWidget {
@@ -41,23 +44,29 @@ class _CategorySectionState extends State<CategorySection> {
         SizedBox(height: height * 0.02),
 
         // 🔹 Chips
-        SizedBox(
-          height: height * 0.05,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              return CategoryChip(
-                text: categories[index],
-                isSelected: selectedIndex == index,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                  });
+        BlocBuilder<HomeCubit, HomeStates>(
+          builder: (context, state) {
+            final myCubit = context.read<HomeCubit>();
+            return SizedBox(
+              height: height * 0.05,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return CategoryChip(
+                    text: categories[index],
+                    isSelected: selectedIndex == index,
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      myCubit.getFiltedData(categories[index]);
+                    },
+                  );
                 },
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ],
     );

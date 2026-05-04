@@ -26,7 +26,7 @@ class Meal {
 
   factory Meal.fromMap(Map<String, dynamic> json) {
     return Meal(
-      image: json['imag'],
+      image: json['image'],
       kcal: json['kcal'],
       mealType: json['mealType'],
       time: json['time'],

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti5/features/auth/cubit/auth_cubit.dart';
 import 'package:nti5/features/auth/login/login_screen.dart';
 import 'package:nti5/features/auth/signup/signup_screen.dart';
+import 'package:nti5/features/home/cubit/home_cubit.dart';
 import 'package:nti5/features/main_navigator/main_navigation.dart';
 import 'package:nti5/features/onboarding/onboarding_screen.dart';
 import 'package:nti5/features/splash/splash_screen.dart';
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(),
           child: LoginScreen(),
         ),
-        '/home': (context) => MainNavigation(),
+        '/home': (context) => BlocProvider(
+          create: (context) => HomeCubit()..getData(),
+          child: MainNavigation(),
+        ),
       },
     );
   }

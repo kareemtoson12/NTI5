@@ -41,6 +41,7 @@ class FirebaseDataSource {
     }
   }
 
+  //add data
   Future<void> addData() async {
     final List<Meal> mealsData = [
       // 🥣 Breakfast
@@ -127,6 +128,7 @@ class FirebaseDataSource {
     }
   }
 
+  //get data
   Future<List<Meal>> getData() async {
     List<Meal> meals = [];
     try {
@@ -139,6 +141,7 @@ class FirebaseDataSource {
     } catch (e) {
       if (kDebugMode) {
         print(e);
+        print('***********');
       }
       return [];
     }
